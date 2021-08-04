@@ -27,7 +27,11 @@ jobs:
     name: Release new version
     steps:
       - uses: actions/checkout@v2
-
+      - uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
       - name: Actions Ecosystem Action Get Merged Pull Request
         uses: actions-ecosystem/action-get-merged-pull-request@v1.0.1
         id: get-pull-request
