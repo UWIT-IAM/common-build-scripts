@@ -7,4 +7,4 @@ ENV BUILD_SCRIPTS_DIR /builder
 RUN echo 'for s in /builder/sources/*.sh; do . $s; done' >> /root/.bashrc
 SHELL ["/bin/bash", "-c"]
 COPY ./entrypoint.sh ./
-ENTRYPOINT ["./entrypoint.sh"]
+ENTRYPOINT ["/builder/entrypoint.sh"]
