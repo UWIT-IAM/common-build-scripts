@@ -7,7 +7,7 @@ on:
       - main
 
 env:
-  version_guidance: prerelease
+  version_guidance: prepatch
   image: ghcr.io/uwit-iam/common-build-scripts
 
 jobs:
@@ -58,12 +58,12 @@ jobs:
 
       - env:
           semver_tag: ${{ env.image }}:${{ steps.bump-semver.outputs.new_version }}
-          prerelease_tag: ${{ env.image }}:prerelease
+          prepatch_tag: ${{ env.image }}:prepatch
         run: |
           docker build . -t $semver_tag
-          docker tag $semver_tag $prerelease_tag
+          docker tag $semver_tag $prepatch_tag
           docker push $semver_tag
-          docker push $prerelease_tag
+          docker push $prepatch_tag
 
       - uses: actions-ecosystem/action-push-tag@v1
         with:
