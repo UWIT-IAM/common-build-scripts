@@ -1,9 +1,8 @@
 # This collection contains functions that
 # allow you to generate fingerprints of artifacts.
 
-SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
-
-source $SCRIPT_DIR/environment-validation.sh
+BUILD_SCRIPTS_DIR=${BUILD_SCRIPTS_DIR:-$PWD}
+source $BUILD_SCRIPTS_DIR/sources/environment-validation.sh
 
 function calculate_string_fingerprint {
   # Gets the SHA256 sum of an arbitrary string
