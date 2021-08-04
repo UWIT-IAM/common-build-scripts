@@ -1,0 +1,12 @@
+# Exclude metadata in the archive,
+# so that when folks download it, they
+# have only the scripts.
+
+.github export-ignore
+.gitattributes export-ignore
+actions export-ignore
+Dockerfile export-ignore
+entrypoint.sh export-ignore
+run-tests.sh export-ignore
+tests export-ignore
+README.md export-ignore

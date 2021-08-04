@@ -11,6 +11,6 @@ function assert_command {
     echo "$1 not found on your current PATH."
     test -n "$2" && echo "$2"
     echo
-    exit 1
+    return 1
   fi
 }

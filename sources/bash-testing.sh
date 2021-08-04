@@ -54,7 +54,7 @@ function assert_not_output_matches {
 
 function assert_success {
   local cmd="$1"
-  output="$(eval cmd)"
+  output="$(eval $cmd)"
   if [[ $? -gt 0 ]]
   then
     log_failure

@@ -4,17 +4,11 @@ on:
       - opened
       - reopened
 
-
 jobs:
   update-pr:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions-ecosystem/action-add-labels@v1
-        if: ${{ startsWith(github.event.comment.body, '/add-labels') }}
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          labels: Version Guidance:prerelease
       - uses: actions-ecosystem/action-add-assignees@v1.0.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
