@@ -8,6 +8,7 @@ on:
 
 env:
   version_guidance: prerelease
+  image: ghcr.io/uwit-iam/common-build-scripts
 
 jobs:
   validate:
@@ -51,10 +52,10 @@ jobs:
           level: ${{ env.version_guidance }}
 
       - env:
-          semver: ghcr.io/${{ github.repository }}:${{ steps.bump-semver.outputs.new_version }}
-        run: >
-          docker build . -t $semver
-          docker push $semver
+          semver_tag: ${{ env.image }}:${{ steps.bump-semver.outputs.new_version }}
+        run: |
+          docker build . -t $semver_tag
+          docker push $semver_tag
 
       - uses: actions-ecosystem/action-push-tag@v1
         with:
