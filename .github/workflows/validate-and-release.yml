@@ -51,7 +51,7 @@ jobs:
           level: ${{ env.version_guidance }}
 
       - env:
-          semver: ghcr.io/${{ github.repository }}:${{ steps.bump_semver.outputs.new_version }}
+          semver: ghcr.io/${{ github.repository }}:${{ steps.bump-semver.outputs.new_version }}
         run: >
           docker build . -t $semver
           docker push $semver
