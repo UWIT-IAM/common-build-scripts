@@ -1,10 +1,14 @@
 on:
+  push:
+    branches:
+      - test-publish-release
   release:
     types:
       - published
 
 env:
   image: ghcr.io/uwit-iam/common-build-scripts
+  dry_run: ${{ github.event_name == 'push' }}
 
 jobs:
   tag-for-release:
@@ -16,9 +20,18 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
       - run: |
+          set -x
+          if [[ "$dry_run" == 'true' ]]
+          then
+            GITHUB_REF="refs/tags/0.0.4"
+          fi
           version=$(basename $GITHUB_REF)
+          echo "Releasing $version"
           docker pull $image:$version
           docker tag $image:$version $image:latest
           docker tag $image:$version $image:release
-          docker push $image:latest
-          docker push $image:release
+          if [[ "$dry_run" == 'false' ]]
+          then
+            docker push $image:latest
+            docker push $image:release
+          fi
