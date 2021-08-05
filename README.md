@@ -53,7 +53,7 @@ steps:
 
 ### . . . anywhere!
 
-### Install to your environment
+#### Install to your environment
 
 
 Recommended method, if you have the [gh] client installed
