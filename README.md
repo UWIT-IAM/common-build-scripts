@@ -102,6 +102,7 @@ workdir /build
 COPY --from=build-scripts /builder /build-scripts
 COPY pyproject.toml poetry.lock ./
 RUN poetry install && /builder/scripts/do_work.sh
+```
 
 ## Repository Structure
 
