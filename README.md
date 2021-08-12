@@ -66,9 +66,9 @@ get_tag_archive UWIT-IAM/common-build-scripts latest ~/.common-build-scripts
 # The rest of these are optional and will allow you to call any function or run
 # any build script from anywhere.
 
-echo "for s in $HOME/.common-build-scripts/sources; do source $s; done" >> ~/.bashrc
-echo "PATH="$PATH:$HOME/.common-build-scripts/scripts" >> ~/.bashrc
-echo "export BUILD_SCRIPTS_DIR=$HOME/.common-build-scripts" >> ~/.bashrc
+echo 'for s in $HOME/.common-build-scripts/sources; do source $s; done' >> ~/.bashrc
+echo 'PATH="$PATH:$HOME/.common-build-scripts/scripts' >> ~/.bashrc
+echo 'export BUILD_SCRIPTS_DIR=$HOME/.common-build-scripts' >> ~/.bashrc
 ```
 
 If you do not have the [gh] client installed, you can manually download and extract the version you want from 
