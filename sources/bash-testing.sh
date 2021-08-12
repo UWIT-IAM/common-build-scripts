@@ -38,6 +38,34 @@ function assert_output_matches {
   fi
 }
 
+function assert_output_matches_pattern {
+  local cmd="$1"
+  local expected="$2"
+  output="$(eval $cmd)"
+  if ! [[ "$output" =~ $expected ]]
+  then
+    log_failure
+    echo ".... expected '$expected' "
+    echo ".... received '$output'"
+  else
+    log_assertion_status OK
+  fi
+}
+
+function assert_not_output_matches_pattern {
+  local cmd="$1"
+  local expected="$2"
+  output="$(eval $cmd)"
+  if [[ "$output" =~ $expected ]]
+  then
+    log_failure
+    echo ".... expected not to receive output: "
+    echo "...... $output"
+  else
+    log_assertion_status OK
+  fi
+}
+
 function assert_not_output_matches {
   local cmd="$1"
   local expected="$2"
