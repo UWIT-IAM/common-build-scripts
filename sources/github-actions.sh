@@ -9,3 +9,9 @@ function set_ci_output {
   # You can test the output by setting it in your environment.
   echo "::set-output name=$1::$2"
 }
+
+function set_env {
+  local key="$1"
+  local value="$2"
+  echo "$key=$value" >> $GITHUB_ENV
+}
