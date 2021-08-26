@@ -18,6 +18,14 @@ jobs:
       - run: echo ${{ secrets.GITHUB_TOKEN }} | gh auth login --with-token
       - uses: actions/checkout@v2
       - run: ./run-tests.sh
+      - name: Test installer
+        env:
+          BUILD_SCRIPTS_DIR: /tmp/build-scripts
+          URL: https://raw.githubusercontent.com/${{ github.repository }}/${{ github.sha }}/scripts/install-common-build-scripts.sh
+        run: |
+          test ! -d "${BUILD_SCRIPTS_DIR}"
+          bash <(curl -s $URL)
+          test -f "${BUILD_SCRIPTS_DIR}/.VERSION"
 
   release:
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
