@@ -2,6 +2,17 @@
 
 Common build scripts and functions that can be invoked directly or via docker.
 
+## Quickstart:
+
+Install locally with:
+
+```
+# The URL below is mapped to the raw script stored on the `main` 
+# branch of this repository at scripts/install-common-build-scripts.sh.
+
+echo $(source <(curl -s https://uwiam.page.link/install-build-scripts))
+```
+
 ## How to Use This
 
 You can install these scripts on your local machine to make them avaialable to your developer workspace, 
@@ -32,7 +43,6 @@ steps:
 #### Run an entire script that invokes the commands
 
 ```bash
-# build_scripts/foo.sh
 #!/usr/bin/env bash
 
 fingerprint=$(calculate_paths_fingerprint assets)
@@ -56,23 +66,28 @@ steps:
 #### Install to your environment
 
 
-Recommended method, if you have the [gh] client installed
+The following one-liner will install the build scripts to your local `./build-scripts`
+directory. It is recommended to defer to default behavior, which installs this 
+in your repository root, instead of system-wide.
+
+You can control the build directory with the `--dirctory/-d` 
+argument, and set the version with the `--version/-v` argument.
 
 ```
-# These first two commands will download the scripts and source files to `~/.common-build-scripts`
-source <(curl -s https://raw.githubusercontent.com/UWIT-IAM/common-build-scripts/main/sources/github.sh)
-get_tag_archive UWIT-IAM/common-build-scripts latest ~/.common-build-scripts
-
-# The rest of these are optional and will allow you to call any function or run
-# any build script from anywhere.
-
-echo "for s in $HOME/.common-build-scripts/sources; do source $s; done" >> ~/.bashrc
-echo "PATH="$PATH:$HOME/.common-build-scripts/scripts" >> ~/.bashrc
-echo "export BUILD_SCRIPTS_DIR=$HOME/.common-build-scripts" >> ~/.bashrc
+# The URL below is mapped to the raw script stored on the `main` 
+# branch of this repository at scripts/install-common-build-scripts.sh.
+echo $(source <(curl -s https://uwiam.page.link/install-build-scripts))
 ```
 
-If you do not have the [gh] client installed, you can manually download and extract the version you want from 
-the available [releases].
+If you want to control which installer you use, you can use
+the URL Format:
+
+```
+https://raw.githubusercontent.com/UWIT-IAM/common-build-scripts/REF/scripts/install-common-build-scripts.sh
+```
+
+where `${REF}` is the branch or other resolvable reference you want to use. (Mostly 
+this is important if you want to install and test a new release before it is merged.)
 
 #### Run using docker
 
@@ -112,6 +127,5 @@ RUN poetry install && /builder/scripts/do_work.sh
 + sources    # Things you source (e.g., `source ./sources/collection-name.sh`)
 ```
 
-[gh]: https://cli.github.com/
 [releases]: https://github.com/UWIT-IAM/common-build-scripts/releases
 [docker repository]:  https://github.com/orgs/UWIT-IAM/packages/container/package/common-build-scripts
