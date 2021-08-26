@@ -1,7 +1,7 @@
 # This collection contains functions that
 # allow you to generate fingerprints of artifacts.
 
-BUILD_SCRIPTS_DIR=${BUILD_SCRIPTS_DIR:-$PWD}
+BUILD_SCRIPTS_DIR=${BUILD_SCRIPTS_DIR:-$PWD/.build-scripts}
 source $BUILD_SCRIPTS_DIR/sources/environment-validation.sh
 
 function calculate_string_fingerprint {
