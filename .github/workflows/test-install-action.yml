@@ -1,0 +1,13 @@
+name: Test actions/install
+on:
+  push:
+    branches:
+      - test-install-action
+
+jobs:
+  test-install-action:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: ./actions/install/entrypoint.sh
+      - run: test -d ./.build-scripts/sources
