@@ -6,7 +6,6 @@
 .gitattributes export-ignore
 actions export-ignore
 Dockerfile export-ignore
-entrypoint.sh export-ignore
 run-tests.sh export-ignore
 tests export-ignore
 README.md export-ignore
