@@ -89,7 +89,7 @@ tarball="/tmp/common-build-scripts-${repo_version}.tar.gz"
 curl -Lks "${tarball_url}" --output $tarball
 tarball_root=$(tar -tzf $tarball | sed -e 's@/.*@@' | uniq)
 tar -xf $tarball -C /tmp
-mv /tmp/$tarball_root/* $BUILD_SCRIPTS_DIR
+mv /tmp/$tarball_root/{sources,scripts} $BUILD_SCRIPTS_DIR
 echo "${repo_version}" >> ${BUILD_SCRIPTS_DIR}/.VERSION
 rm -rf /tmp/${tarball_root}
 
