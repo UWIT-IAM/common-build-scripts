@@ -15,4 +15,4 @@ runs:
   using: composite
   steps:
     - shell: bash
-      run: ${{ github.action_path }}/entrypoint.sh
+      run: ${{ github.action_path }}/entrypoint.sh --version ${{ inputs.version }}
