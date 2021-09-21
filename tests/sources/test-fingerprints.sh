@@ -6,7 +6,7 @@ foo_string_hash="b5bb9d8014a0f9b1d61e21e796d78dccdf1352f23cd32812f4850b878ae4944
 bar_string_hash="7d865e959b2466918c9863afca942d0fb89d7c9ac0c99bafc3749504ded97730"
 foo_bar_files_hash="ca76adad5fce9485c5ce1523e21f227b4ab8e68e96d656b09672a0febff0240d"
 
-TMPDIR=/tmp/test-fingerprints
+export TMPDIR=/tmp/test-fingerprints
 
 source $BUILD_SCRIPTS_DIR/sources/fingerprints.sh
 source $BUILD_SCRIPTS_DIR/sources/bash-testing.sh
@@ -56,7 +56,8 @@ function test_calculate_glob_fingerprint {
   local test_name=test_calculate_glob_fingerprint
   echo $test_name
   create_temp_paths
-
+  paths=$(find "$directory" -name "$pattern" -print0 | xargs -0)
+  echo "Calculating fingperint for:\n $PATHS"
   set_up_assertion "glob should match expected fingerprint"
   assert_output_matches "calculate_glob_fingerprint $TMPDIR" "$foo_bar_files_hash"
 
