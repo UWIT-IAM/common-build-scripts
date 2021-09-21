@@ -56,8 +56,12 @@ function test_calculate_glob_fingerprint {
   local test_name=test_calculate_glob_fingerprint
   echo $test_name
   create_temp_paths
-  paths=$(find "$directory" -name "$pattern" -print0 | xargs -0)
-  echo "Calculating fingperint for:\n $PATHS"
+  set -x
+  paths=$(find "$TMPDIR" -name "*" -print0 | xargs -0)
+  set +x
+  echo "Calculating fingperint for: "
+  echo "${PATHS:-'NONE!'}"
+
   set_up_assertion "glob should match expected fingerprint"
   assert_output_matches "calculate_glob_fingerprint $TMPDIR" "$foo_bar_files_hash"
 
