@@ -35,6 +35,6 @@ function calculate_glob_fingerprint {
   # generates the sha256 sum of all matching files.
   directory="$1"
   pattern="${2:-*}"
-  paths=$(find "$directory" -name "$pattern" -print0 | xargs -0)
+  paths=$(find "$directory" -name "$pattern" -print0 | sort -z | xargs -0)
   calculate_paths_fingerprint $paths
 }

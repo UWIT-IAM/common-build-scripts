@@ -4,7 +4,7 @@ FAILURES=0
 
 foo_string_hash="b5bb9d8014a0f9b1d61e21e796d78dccdf1352f23cd32812f4850b878ae4944c"
 bar_string_hash="7d865e959b2466918c9863afca942d0fb89d7c9ac0c99bafc3749504ded97730"
-foo_bar_files_hash="ca76adad5fce9485c5ce1523e21f227b4ab8e68e96d656b09672a0febff0240d"
+foo_bar_files_hash="23c4233658398a738023c5bb5abcb420300b2c352c19bde1f5a6a4f9b9882172"
 
 export TMPDIR=/tmp/test-fingerprints
 
@@ -56,11 +56,6 @@ function test_calculate_glob_fingerprint {
   local test_name=test_calculate_glob_fingerprint
   echo $test_name
   create_temp_paths
-  set -x
-  paths=$(find "$TMPDIR" -name "*" -print0 | xargs -0)
-  set +x
-  echo "Calculating fingperint for: "
-  echo "${PATHS:-'NONE!'}"
 
   set_up_assertion "glob should match expected fingerprint"
   assert_output_matches "calculate_glob_fingerprint $TMPDIR" "$foo_bar_files_hash"
