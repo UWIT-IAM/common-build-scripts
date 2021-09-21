@@ -8,8 +8,6 @@ foo_bar_files_hash="ca76adad5fce9485c5ce1523e21f227b4ab8e68e96d656b09672a0febff0
 
 TMPDIR=/tmp/test-fingerprints
 
-echo "Testing common-build-scripts in ${PWD}"
-export BUILD_SCRIPTS_DIR="${PWD}"
 source $BUILD_SCRIPTS_DIR/sources/fingerprints.sh
 source $BUILD_SCRIPTS_DIR/sources/bash-testing.sh
 
@@ -27,7 +25,7 @@ function test_calculate_string_fingerprint {
 function test_calculate_file_fingerprint {
   local test_name=test_calculate_file_fingerprint
   echo $test_name
-  _create_temp_paths
+  create_temp_paths
 
   set_up_assertion "foo file hash should match foo string hash"
   assert_output_matches "calculate_file_fingerprint $TMPDIR/foo" "$foo_string_hash"
@@ -45,7 +43,7 @@ function test_calculate_paths_fingerprint {
   local test_name=test_calculate_paths_fingerprint
   echo $test_name
   cmd="calculate_paths_fingerprint $TMPDIR/foo $TMPDIR/bar"
-  _create_temp_paths
+  create_temp_paths
   set_up_assertion "paths should match expected fingerprint"
   assert_output_matches "$cmd" "$foo_bar_files_hash"
 
@@ -57,7 +55,7 @@ function test_calculate_paths_fingerprint {
 function test_calculate_glob_fingerprint {
   local test_name=test_calculate_glob_fingerprint
   echo $test_name
-  _create_temp_paths
+  create_temp_paths
 
   set_up_assertion "glob should match expected fingerprint"
   assert_output_matches "calculate_glob_fingerprint $TMPDIR" "$foo_bar_files_hash"

@@ -2,6 +2,7 @@
 FAILURES=
 DEBUG=${DEBUG:-""}
 
+export BUILD_SCRIPTS_DIR="${PWD}"
 tests=$(find tests -name '*.sh')
 source ./sources/bash-testing.sh
 
@@ -12,7 +13,7 @@ do
   if [[ $? -gt 0 ]]
   then
     log_failure
-    echo $output
+    echo "$output"
   else
     log_assertion_status OK
   fi

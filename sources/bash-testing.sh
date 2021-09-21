@@ -1,13 +1,14 @@
-function _create_temp_paths {
+
+function conditional_echo {
+  test -z "${DEBUG}" || echo "$1"
+}
+
+function create_temp_paths {
   mkdir -p $TMPDIR
   rm -rf $TMPDIR/*  # If leftover from previous test, clean it up
   echo "foo" > $TMPDIR/foo
   echo "bar" > $TMPDIR/bar
-  test -z "${DEBUG}" || echo ".. created temporary files"
-}
-
-function conditional_echo {
-  test -z "${DEBUG}" || echo "$1"
+  conditional_echo ".. created temporary files in $TMPDIR"
 }
 
 function log_assertion_status {

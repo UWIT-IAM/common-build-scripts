@@ -26,7 +26,6 @@ function calculate_paths_fingerprint {
     test -f "$lockfile" || continue
     lock_fingerprint=$(calculate_file_fingerprint $lockfile)
     aggregate+=$lock_fingerprint
-    test -z "${DEBUG}" || echo "Lockfile $lockfile: $lock_fingerprint"
   done
   calculate_string_fingerprint $aggregate
 }
@@ -37,6 +36,5 @@ function calculate_glob_fingerprint {
   directory="$1"
   pattern="${2:-*}"
   paths=$(find "$directory" -name "$pattern" -print0 | xargs -0)
-  test -z "${DEBUG}" || echo "Matched paths: $paths"
   calculate_paths_fingerprint $paths
 }
