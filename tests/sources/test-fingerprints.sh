@@ -8,9 +8,10 @@ foo_bar_files_hash="ca76adad5fce9485c5ce1523e21f227b4ab8e68e96d656b09672a0febff0
 
 TMPDIR=/tmp/test-fingerprints
 
-source $PWD/sources/fingerprints.sh
-source $PWD/sources/bash-testing.sh
-
+echo "Testing common-build-scripts in ${PWD}"
+export BUILD_SCRIPTS_DIR="${PWD}"
+source $BUILD_SCRIPTS_DIR/sources/fingerprints.sh
+source $BUILD_SCRIPTS_DIR/sources/bash-testing.sh
 
 function test_calculate_string_fingerprint {
   local test_name=test_calculate_string_fingerprint
