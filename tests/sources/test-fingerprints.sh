@@ -42,7 +42,7 @@ function test_calculate_file_fingerprint {
 function test_calculate_paths_fingerprint {
   local test_name=test_calculate_paths_fingerprint
   echo $test_name
-  cmd="calculate_paths_fingerprint $TMPDIR/foo $TMPDIR/bar"
+  cmd="calculate_paths_fingerprint $TMPDIR/bar $TMPDIR/foo"
   create_temp_paths
   set_up_assertion "paths should match expected fingerprint"
   assert_output_matches "$cmd" "$foo_bar_files_hash"
